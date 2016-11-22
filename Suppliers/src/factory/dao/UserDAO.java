@@ -6,11 +6,9 @@
 package factory.dao;
 
 import java.util.List;
+import pojos.EmployeeType;
 import pojos.Tevents;
 import pojos.Tuser;
-
-
-
 
 /**
  *
@@ -23,4 +21,6 @@ public interface UserDAO {
     Tuser find(int id);
 
     List<Tuser> findAll();
+
+    List<EmployeeType> getType();
 }

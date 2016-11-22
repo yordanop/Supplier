@@ -5,6 +5,7 @@
  */
 package suppliers.models;
 
+import factory.dao.database.MySQLUserDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableModel;
@@ -21,7 +22,7 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
     private List<ProductsViewObserver> userObserver1;
     private List<Tuser> user1;
     String statusMessage = "Ready";
-
+    MySQLUserDAO dao=new MySQLUserDAO();
     public UserViewModel() {
         userObserver1 = new ArrayList<>();
         user1 = new ArrayList<>();
@@ -35,11 +36,22 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
         Thread thread = new Thread(queryUser);
         thread.start();
     }
+    
+    @Override
+    public void queryEmploTy(){
+    Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            dao.getType();
+        }
+    });
+    }
 
 
     @Override
     public void initialize() {
         queryUser();
+        queryEmploTy();
     }
 
     @Override
@@ -88,4 +100,5 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
     public String getStatusMessage() {
         return statusMessage;
     }
+
 }

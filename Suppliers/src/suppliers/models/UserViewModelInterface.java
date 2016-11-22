@@ -28,7 +28,8 @@ public interface UserViewModelInterface {
     void registerObserver(ProductsViewObserver userObserver);
 
     void removeObserver(ProductsViewObserver userObserver);
-    void getComboBox();
+
+    void queryEmploTy();
 
     String getStatusMessage();
 }

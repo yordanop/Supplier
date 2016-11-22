@@ -5,7 +5,6 @@
  */
 package suppliers.views;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Session;
@@ -19,20 +18,22 @@ import suppliers.models.UserViewModelInterface;
  *
  * @author YordanoEynar
  */
-public class NewUserView extends javax.swing.JFrame {
+public class NewUserView extends javax.swing.JFrame implements ProductsViewObserver {
 
- private UserViewModelInterface userModel;
+    private UserViewModelInterface userModel;
     private NewUserControllerInterface userController;
+
     /**
      * Creates new form NewUserView
+     *
      * @param userModel
      * @param userController
      */
-    public NewUserView(UserViewModelInterface userModel,NewUserControllerInterface userController) {
+    public NewUserView(UserViewModelInterface userModel, NewUserControllerInterface userController) {
         initComponents();
-                ConfigureView();
-        this.userModel=userModel;
-        this.userController=userController;
+        UpdateView();
+        this.userModel = userModel;
+        this.userController = userController;
     }
 
     /**
@@ -153,16 +154,16 @@ public class NewUserView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                         MySessionFactory mySessionFactory = new MySessionFactory();
-        SessionFactory sessionFactory =null;
-        Session session=null;
+        MySessionFactory mySessionFactory = new MySessionFactory();
+        SessionFactory sessionFactory = null;
+        Session session = null;
         try {
             // TODO code application logic here
             sessionFactory = mySessionFactory.setUp();
             session = sessionFactory.openSession();
             session.beginTransaction();
-            Tuser user=null;
-            switch(jComboBox1.getSelectedItem().toString()){
+            Tuser user = null;
+            switch (jComboBox1.getSelectedItem().toString()) {
                 case "Manager":
                     //user = new Tuser(jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText());
                     break;
@@ -171,15 +172,15 @@ public class NewUserView extends javax.swing.JFrame {
                 case "Seller":
                     break;
             }
-                 
-        userModel.addUser(user);
-                dispose();
-             session.getTransaction().commit();
+
+            userModel.addUser(user);
+            dispose();
+            session.getTransaction().commit();
             System.out.println(session.save(user));
         } catch (Exception ex) {
             Logger.getLogger(NewUserView.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-             session.close();
+        } finally {
+            session.close();
             sessionFactory.close();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -200,6 +201,11 @@ public class NewUserView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
-    private void ConfigureView() {
-   
+    @Override
+    public void UpdateView() {
+        
+        for(int i=0;)
+jComboBox1.addItem(item);
+    }
+
 }

@@ -63,4 +63,23 @@ public class MySQLUserDAO implements UserDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<EmployeeType> getType() {
+        List<EmployeeType> types=null;
+        try {
+            sessionFactory = mySessionFactory.setUp();
+            Session session = sessionFactory.openSession();
+
+            session.beginTransaction();
+
+            types=session.createQuery("Select EmployeeType FROM EmployeeType").list();
+ 
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception ex) {
+            Logger.getLogger(MySQLUserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return types;
+    }
+
 }

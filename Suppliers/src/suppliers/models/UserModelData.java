@@ -7,7 +7,6 @@ package suppliers.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 import pojos.EmployeeType;
 import pojos.Tuser;
