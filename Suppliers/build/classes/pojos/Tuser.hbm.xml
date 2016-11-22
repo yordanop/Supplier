@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/11/2016 03:58:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Tuser" table="tUser" catalog="Suppliers" optimistic-lock="version">
+        <id name="iduser" type="string">
+            <column name="IDUser" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="employeeType" class="pojos.EmployeeType" fetch="select">
+            <column name="EmployeeType" />
+        </many-to-one>
+        <property name="firstName" type="string">
+            <column name="FirstName" length="20" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LastName" length="20" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" length="8" />
+        </property>
+        <set name="teventses" table="tEvents" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUser" length="10" />
+            </key>
+            <one-to-many class="pojos.Tevents" />
+        </set>
+    </class>
+</hibernate-mapping>

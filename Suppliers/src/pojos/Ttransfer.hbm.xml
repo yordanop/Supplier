@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/11/2016 03:58:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Ttransfer" table="tTransfer" catalog="Suppliers" optimistic-lock="version">
+        <id name="idTransfer" type="java.lang.Integer">
+            <column name="idTransfer" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tevents" class="pojos.Tevents" fetch="select">
+            <column name="IDEevent" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="tproducts" class="pojos.Tproducts" fetch="select">
+            <column name="ProductID" />
+        </many-to-one>
+        <property name="date" type="timestamp">
+            <column name="Date" length="19" />
+        </property>
+        <property name="quantity" type="int">
+            <column name="Quantity" not-null="true" />
+        </property>
+        <property name="rfc" type="string">
+            <column name="RFC" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
