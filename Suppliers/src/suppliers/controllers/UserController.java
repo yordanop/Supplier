@@ -5,6 +5,9 @@
  */
 package suppliers.controllers;
 
+import java.util.List;
+import pojos.EmployeeType;
+import pojos.Tuser;
 import suppliers.models.UserViewModelInterface;
 import suppliers.views.NewUserView;
 
@@ -33,9 +36,10 @@ public class UserController implements UserViewControllerInterface {
 
     @Override
     public void newUser() {
-        NewUserControllerInterface userController = new NewUserController();
+        NewUserControllerInterface userController = new NewUserController(userModel);
         NewUserView userView = new NewUserView(userModel, userController);
+        userModel.initializeNew();
         userView.setVisible(true);
+        
     }
-
 }

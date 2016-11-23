@@ -5,6 +5,7 @@
  */
 package suppliers.views;
 
+import suppliers.ModelObserver;
 import suppliers.controllers.UserViewControllerInterface;
 import suppliers.models.UserViewModelInterface;
 
@@ -12,7 +13,7 @@ import suppliers.models.UserViewModelInterface;
  *
  * @author YordanoEynar
  */
-public class UserView extends javax.swing.JFrame implements ProductsViewObserver{
+public class UserView extends javax.swing.JFrame implements ModelObserver{
 
     private UserViewModelInterface userModel;
     private UserViewControllerInterface userController;
@@ -108,6 +109,7 @@ public class UserView extends javax.swing.JFrame implements ProductsViewObserver
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        userController.newUser();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -121,8 +123,10 @@ public class UserView extends javax.swing.JFrame implements ProductsViewObserver
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void UpdateView() {
+    public void updateView() {
          jTable1.setModel(userModel.getUserTableModel());
             jLabel1.setText(userModel.getStatusMessage());
     }
+
+
 }

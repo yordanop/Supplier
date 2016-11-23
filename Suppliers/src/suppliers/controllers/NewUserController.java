@@ -7,6 +7,8 @@ package suppliers.controllers;
 
 
 
+import java.util.List;
+import pojos.EmployeeType;
 import pojos.Tuser;
 import suppliers.models.UserViewModelInterface;
 
@@ -20,10 +22,24 @@ import suppliers.models.UserViewModelInterface;
 public class NewUserController implements NewUserControllerInterface {
 
     private UserViewModelInterface userModel;
-    
-    @Override
-    public void saveUser(Tuser user) {
-        
+    public NewUserController(UserViewModelInterface model){
+        this.userModel=model;
     }
 
+    @Override
+    public void addUser(Tuser user) {
+        userModel.addUser(user);
+    }
+
+    @Override
+    public void queryTypes() {
+        userModel.queryUser();
+    }
+
+    @Override
+    public List<EmployeeType> getTypes() {
+       return userModel.getTypes();
+    }
+    
+  
 }

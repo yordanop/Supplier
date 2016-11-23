@@ -5,9 +5,11 @@
  */
 package suppliers.models;
 
+import java.util.List;
 import javax.swing.table.TableModel;
+import pojos.EmployeeType;
 import pojos.Tuser;
-import suppliers.views.ProductsViewObserver;
+import suppliers.ModelObserver;
 
 /**
  *
@@ -17,6 +19,8 @@ public interface UserViewModelInterface {
 
     void queryUser();
 
+    void queryTypes();
+
     TableModel getUserTableModel();
 
     void addUser(Tuser user);
@@ -25,11 +29,13 @@ public interface UserViewModelInterface {
 
     void notifyObservers();
 
-    void registerObserver(ProductsViewObserver userObserver);
+    void registerObserver(ModelObserver userObserver);
 
-    void removeObserver(ProductsViewObserver userObserver);
-
-    void queryEmploTy();
+    void removeObserver(ModelObserver userObserver);
 
     String getStatusMessage();
+
+    List<EmployeeType> getTypes();
+
+    void initializeNew();
 }

@@ -5,6 +5,8 @@
  */
 package suppliers.controllers;
 
+import java.util.List;
+import pojos.EmployeeType;
 import pojos.Tuser;
 
 
@@ -15,5 +17,9 @@ import pojos.Tuser;
  */
 public interface NewUserControllerInterface {
 
-    void saveUser(Tuser user);
+     void addUser(Tuser user);
+    
+    void queryTypes();
+    
+    List<EmployeeType> getTypes();
 }

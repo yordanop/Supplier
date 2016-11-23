@@ -7,13 +7,11 @@ package factory.dao.database;
 
 import factory.dao.UserDAO;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import pojos.EmployeeType;
-import pojos.Tevents;
 import pojos.Tuser;
 import suppliers.MySessionFactory;
 

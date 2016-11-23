@@ -9,9 +9,9 @@ import factory.dao.database.MySQLUserDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableModel;
+import pojos.EmployeeType;
 import pojos.Tuser;
-import suppliers.views.ProductsViewObserver;
-
+import suppliers.ModelObserver;
 
 /**
  *
@@ -19,13 +19,17 @@ import suppliers.views.ProductsViewObserver;
  */
 public class UserViewModel implements UserViewModelInterface, QueryCallBack {
 
-    private List<ProductsViewObserver> userObserver1;
+    private QueryCallBack callback;
+    private List<ModelObserver> userObserver1;
     private List<Tuser> user1;
+    private List<EmployeeType> types;
     String statusMessage = "Ready";
-    MySQLUserDAO dao=new MySQLUserDAO();
+    MySQLUserDAO dao = new MySQLUserDAO();
+
     public UserViewModel() {
         userObserver1 = new ArrayList<>();
         user1 = new ArrayList<>();
+        types=new ArrayList<>();
     }
 
     @Override
@@ -36,28 +40,16 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
         Thread thread = new Thread(queryUser);
         thread.start();
     }
-    
-    @Override
-    public void queryEmploTy(){
-    Thread t = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            dao.getType();
-        }
-    });
-    }
-
 
     @Override
     public void initialize() {
         queryUser();
-        queryEmploTy();
     }
 
     @Override
     public void notifyObservers() {
-        for (ProductsViewObserver userObserver : userObserver1) {
-            userObserver.UpdateView();
+        for (ModelObserver userObserver : userObserver1) {
+            userObserver.updateView();
         }
     }
 
@@ -80,12 +72,12 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
     }
 
     @Override
-    public void registerObserver(ProductsViewObserver userObserver) {
+    public void registerObserver(ModelObserver userObserver) {
         userObserver1.add(userObserver);
     }
 
     @Override
-    public void removeObserver(ProductsViewObserver userObserver) {
+    public void removeObserver(ModelObserver userObserver) {
         userObserver1.add(userObserver);
     }
 
@@ -99,6 +91,26 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
     @Override
     public String getStatusMessage() {
         return statusMessage;
+    }
+
+   
+    @Override
+    public List<EmployeeType> getTypes() {
+        return types;
+    }
+
+    @Override
+    public void initializeNew() {
+        queryTypes();
+    }
+
+    @Override
+    public void queryTypes() {
+        statusMessage = "Wait, getting employee types";
+        notifyObservers();
+        QueryNewUser queryTypes = new QueryNewUser(this);
+        Thread hilo = new Thread(queryTypes);
+        hilo.start();
     }
 
 }
