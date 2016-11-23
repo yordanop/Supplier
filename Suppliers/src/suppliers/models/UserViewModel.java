@@ -113,4 +113,11 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
         hilo.start();
     }
 
+    @Override
+    public void finishedEmployeeCallBack(List items) {
+        types = items;
+        statusMessage = "Ready";
+        notifyObservers();
+    }
+
 }

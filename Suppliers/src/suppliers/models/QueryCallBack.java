@@ -14,4 +14,6 @@ import java.util.List;
 public interface QueryCallBack {
 
     void finishedQueryCallBack(List items);
+    
+    void finishedEmployeeCallBack(List items);
 }

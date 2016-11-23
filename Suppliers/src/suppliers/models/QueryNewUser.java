@@ -27,7 +27,7 @@ public class QueryNewUser implements Runnable{
     @Override
     public void run() {
          List<EmployeeType> type = dao.getType();
-        callback.finishedQueryCallBack(type);
+        callback.finishedEmployeeCallBack(type);
     }
     
 }

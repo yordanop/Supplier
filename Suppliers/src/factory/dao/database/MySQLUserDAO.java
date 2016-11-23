@@ -70,7 +70,7 @@ public class MySQLUserDAO implements UserDAO {
 
             session.beginTransaction();
 
-            types=session.createQuery("Select EmployeeType FROM EmployeeType").list();
+            types=session.createQuery("FROM EmployeeType").list();
  
             session.getTransaction().commit();
             session.close();

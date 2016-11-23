@@ -89,5 +89,10 @@ public class TransferViewModel implements TransferViewModelInterface, QueryCallB
         return statusMessage;
     }
 
+    @Override
+    public void finishedEmployeeCallBack(List items) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }

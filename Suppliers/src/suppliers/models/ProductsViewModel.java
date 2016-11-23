@@ -87,4 +87,9 @@ public class ProductsViewModel implements ProductsViewModelInterface, QueryCallB
     public String getStatusMessage() {
         return statusMessage;
     }
+
+    @Override
+    public void finishedEmployeeCallBack(List items) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
