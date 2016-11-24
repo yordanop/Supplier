@@ -163,28 +163,8 @@ public class NewProductsView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        MySessionFactory mySessionFactory = new MySessionFactory();
-        SessionFactory sessionFactory = null;
-        Session session = null;
-        try {
-            // TODO code application logic here
-            sessionFactory = mySessionFactory.setUp();
-            session = sessionFactory.openSession();
-            session.beginTransaction();
-
-            //sesscion.save(yordano);
             Tproducts product = new Tproducts(jTextField1.getText(), jTextField2.getText(), Integer.valueOf(jTextField3.getText()), jTextField4.getText(), Integer.valueOf(jTextField5.getText()));
             productsModel.addProduct(product);
-            dispose();
-            session.getTransaction().commit();
-            System.out.println(session.save(product));
-        } catch (Exception ex) {
-            Logger.getLogger(NewProductsView.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            session.close();
-            sessionFactory.close();
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

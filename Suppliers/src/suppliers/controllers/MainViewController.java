@@ -54,7 +54,6 @@ public class MainViewController implements MainViewControllerInterface {
     @Override
     public void viewProducts() {
          this.model.viewProducts();
-
         ProductsViewModelInterface model = new ProductsViewModel();//Evento del click crea model y controller
         ProductsViewControllerInterface controller = new ProductsController(model);
         ProductsView empView = new ProductsView(model, controller);//crear una vista que recibe el modelo y el controlador

@@ -56,6 +56,12 @@ public class ProductsViewModel implements ProductsViewModelInterface, QueryCallB
     @Override
     public void addProduct(Tproducts product) {
         products.add(product);
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                
+            }
+        });
         notifyObservers();
 
     }

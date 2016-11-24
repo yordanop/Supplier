@@ -13,6 +13,7 @@ public class Tuser  implements java.io.Serializable {
 
      private String iduser;
      private EmployeeType employeeType;
+     private int employeeType1;
      private String firstName;
      private String lastName;
      private String password;
@@ -33,6 +34,8 @@ public class Tuser  implements java.io.Serializable {
        this.password = password;
        this.teventses = teventses;
     }
+
+
    
     public String getIduser() {
         return this.iduser;
@@ -47,6 +50,13 @@ public class Tuser  implements java.io.Serializable {
     
     public void setEmployeeType(EmployeeType employeeType) {
         this.employeeType = employeeType;
+    }
+     public int getEmployeeType1() {
+        return this.employeeType1;
+    }
+    
+    public void setEmployeeType1(int employeeType) {
+        this.employeeType1 = employeeType;
     }
     public String getFirstName() {
         return this.firstName;

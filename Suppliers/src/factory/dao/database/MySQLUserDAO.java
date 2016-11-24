@@ -31,14 +31,23 @@ public class MySQLUserDAO implements UserDAO {
 
     @Override
     public void add(Tuser user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            sessionFactory = mySessionFactory.setUp();
+            Session session = sessionFactory.openSession();
+
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception ex) {
+            Logger.getLogger(MySQLUserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<Tuser> findAll() {
         List<Tuser> user = null;
-        List<Tuser> users = null;
-        List<EmployeeType> types=null;
+        List<EmployeeType> types = null;
         try {
             sessionFactory = mySessionFactory.setUp();
             Session session = sessionFactory.openSession();
