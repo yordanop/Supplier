@@ -165,6 +165,7 @@ public class NewProductsView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             Tproducts product = new Tproducts(jTextField1.getText(), jTextField2.getText(), Integer.valueOf(jTextField3.getText()), jTextField4.getText(), Integer.valueOf(jTextField5.getText()));
             productsModel.addProduct(product);
+            dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

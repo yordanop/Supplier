@@ -25,12 +25,12 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
     private List<EmployeeType> types;
     String statusMessage = "Ready";
     MySQLUserDAO dao = new MySQLUserDAO();
-    
+
     public UserViewModel() {
         userObserver1 = new ArrayList<>();
         user1 = new ArrayList<>();
-        types=new ArrayList<>();
-      
+        types = new ArrayList<>();
+
     }
 
     @Override
@@ -62,11 +62,11 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
     @Override
     public void addUser(Tuser user) {
         user1.add(user);
-        Thread thread =new Thread(new Runnable() {
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 dao.add(user);
-        notifyObservers();
+                notifyObservers();
             }
         });
         thread.start();
@@ -101,7 +101,6 @@ public class UserViewModel implements UserViewModelInterface, QueryCallBack {
         return statusMessage;
     }
 
-   
     @Override
     public List<EmployeeType> getTypes() {
         return types;

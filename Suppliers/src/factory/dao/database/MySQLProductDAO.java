@@ -31,7 +31,17 @@ public class MySQLProductDAO implements ProductDAO {
 
     @Override
     public void add(Tproducts product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+            sessionFactory = mySessionFactory.setUp();
+            Session session = sessionFactory.openSession();
+            
+            session.beginTransaction();
+            session.save(product);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception ex) {
+            Logger.getLogger(MySQLProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

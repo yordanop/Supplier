@@ -36,6 +36,10 @@ public class MySQLUserDAO implements UserDAO {
             Session session = sessionFactory.openSession();
 
             session.beginTransaction();
+
+            EmployeeType emp = session.get(EmployeeType.class, user.getEmployeeType().getIdEmployeeType());
+            user.setEmployeeType(emp);
+            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa User EMPTYPE " + user.getEmployeeType().getIdEmployeeType());
             session.save(user);
             session.getTransaction().commit();
             session.close();
@@ -55,8 +59,8 @@ public class MySQLUserDAO implements UserDAO {
             session.beginTransaction();
 
             user = session.createQuery("FROM Tuser").list();
-            types=session.createQuery("FROM EmployeeType").list();
- 
+            types = session.createQuery("FROM EmployeeType").list();
+
             session.getTransaction().commit();
             session.close();
         } catch (Exception ex) {
@@ -72,15 +76,15 @@ public class MySQLUserDAO implements UserDAO {
 
     @Override
     public List<EmployeeType> getType() {
-        List<EmployeeType> types=null;
+        List<EmployeeType> types = null;
         try {
             sessionFactory = mySessionFactory.setUp();
             Session session = sessionFactory.openSession();
 
             session.beginTransaction();
 
-            types=session.createQuery("FROM EmployeeType").list();
- 
+            types = session.createQuery("FROM EmployeeType").list();
+
             session.getTransaction().commit();
             session.close();
         } catch (Exception ex) {

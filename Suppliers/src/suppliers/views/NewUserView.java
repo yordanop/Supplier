@@ -31,9 +31,9 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
      */
     private final UserViewModelInterface model;
     private final NewUserControllerInterface controller;
-
+    
     List<EmployeeType> types = new ArrayList<>();
-
+    
     public NewUserView(UserViewModelInterface model, NewUserControllerInterface controller) throws HeadlessException {
         initComponents();
         this.model = model;
@@ -167,7 +167,7 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        types = controller.getTypes();
+        /*     types = controller.getTypes();
         int com = jComboBox1.getSelectedIndex();
         com = com + 1;
         for (EmployeeType type : types) {
@@ -175,7 +175,11 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
                 Tuser user = new Tuser(jTextField3.getText(), type, jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), null);
                 model.addUser(user);
             }
-        }
+        }*/
+        
+        Tuser user = new Tuser(jTextField3.getText(), types.get(jComboBox1.getSelectedIndex()), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), null);
+        model.addUser(user);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -199,7 +203,7 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
     public void updateView() {
         jLabel6.setText(model.getStatusMessage());
         jComboBox1.removeAllItems();
-
+        
         types = controller.getTypes();
         if (types.size() > 0) {
             for (EmployeeType type : types) {

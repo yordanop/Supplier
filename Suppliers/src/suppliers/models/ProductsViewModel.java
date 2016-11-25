@@ -5,6 +5,8 @@
  */
 package suppliers.models;
 
+import factory.dao.database.MySQLProductDAO;
+import factory.dao.database.MySQLUserDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableModel;
@@ -20,6 +22,7 @@ public class ProductsViewModel implements ProductsViewModelInterface, QueryCallB
     private List<ProductsViewObserver> productObserver;
     private List<Tproducts> products;
     String statusMessage = "Ready";
+        MySQLProductDAO dao = new MySQLProductDAO();
 
     public ProductsViewModel() {
         productObserver = new ArrayList<>();
@@ -56,13 +59,14 @@ public class ProductsViewModel implements ProductsViewModelInterface, QueryCallB
     @Override
     public void addProduct(Tproducts product) {
         products.add(product);
-        Thread thread1 = new Thread(new Runnable() {
+        Thread threadq = new Thread(new Runnable() {
             @Override
             public void run() {
-                
+                dao.add(product);
+                notifyObservers();
             }
         });
-        notifyObservers();
+        threadq.start();
 
     }
 
