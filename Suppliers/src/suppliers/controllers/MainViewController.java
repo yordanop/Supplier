@@ -84,6 +84,17 @@ public class MainViewController implements MainViewControllerInterface {
         useView.setVisible(true);
     }
 
+    @Override
+    public void sendProduct() {
+        this.model.sendProduct();
+
+        SendProductViewModelInterface model = new SendProductViewModel();//Evento del click crea model y controller
+        SendProductViewControllerInterface controller = new SendProductController(model);
+        SendProductView sendView = new SendProductView(model, controller);//crear una vista que recibe el modelo y el controlador
+        model.initialize();//carga los datos siempre que se quiera inciar una ventana
+        sendView.setVisible(true);
+    }
+
 
 
 

@@ -18,5 +18,7 @@ public interface MainViewControllerInterface {
     void viewTransfers();
 
     void viewUsers();
+    
+    void sendProduct();
 
 }

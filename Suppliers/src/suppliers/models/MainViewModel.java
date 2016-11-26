@@ -67,8 +67,9 @@ public class MainViewModel implements MainViewModelInterface {
         notifyObservers();
     }
 
- 
-
-
+    @Override
+    public void sendProduct() {
+       notifyObservers();
+    }
 
 }

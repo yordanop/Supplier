@@ -28,5 +28,7 @@ public interface MainViewModelInterface {
     void viewTransfers();
 
     void viewUsers();
+    
+    void sendProduct();
 
 }
