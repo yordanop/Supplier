@@ -17,7 +17,7 @@ import suppliers.views.ProductsViewObserver;
  *
  * @author YordanoEynar
  */
-public class SendProductsViewModel implements ProductsViewModelInterface, QueryCallBack {
+public class SendProductsViewModel implements SendProductViewModelInterface, QueryCallBack {
 
     private List<ProductsViewObserver> productObserver;
     private List<Tproducts> products;

@@ -24,7 +24,8 @@ public class SendProductController implements SendProductViewControllerInterface
 
     @Override
     public void newSendProduct() {
-        
+        //empezar agregando un evento
+        //abrir ventana para transferencia
     }
 
   

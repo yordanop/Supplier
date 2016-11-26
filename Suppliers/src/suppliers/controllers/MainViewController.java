@@ -10,6 +10,8 @@ import suppliers.models.EventsViewModelInterface;
 import suppliers.models.MainViewModelInterface;
 import suppliers.models.ProductsViewModel;
 import suppliers.models.ProductsViewModelInterface;
+import suppliers.models.SendProductViewModelInterface;
+import suppliers.models.SendProductsViewModel;
 import suppliers.models.TransferViewModel;
 import suppliers.models.TransferViewModelInterface;
 import suppliers.models.UserViewModel;
@@ -17,6 +19,7 @@ import suppliers.models.UserViewModelInterface;
 import suppliers.views.EventsView;
 import suppliers.views.MainView;
 import suppliers.views.ProductsView;
+import suppliers.views.SendProductView;
 import suppliers.views.TransferView;
 import suppliers.views.UserView;
 
@@ -88,7 +91,7 @@ public class MainViewController implements MainViewControllerInterface {
     public void sendProduct() {
         this.model.sendProduct();
 
-        SendProductViewModelInterface model = new SendProductViewModel();//Evento del click crea model y controller
+        SendProductViewModelInterface model = new SendProductsViewModel();//Evento del click crea model y controller
         SendProductViewControllerInterface controller = new SendProductController(model);
         SendProductView sendView = new SendProductView(model, controller);//crear una vista que recibe el modelo y el controlador
         model.initialize();//carga los datos siempre que se quiera inciar una ventana

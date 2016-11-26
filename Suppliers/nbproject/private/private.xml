@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/suppliers/models/UserViewModel.java</file>
-            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/pojos/Tuser.hbm.xml</file>
-            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/factory/dao/database/MySQLUserDAO.java</file>
-            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/factory/dao/database/MySQLProductDAO.java</file>
-            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/suppliers/models/UserModelData.java</file>
-            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/suppliers/views/NewUserView.java</file>
-            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/factory/dao/database/MySQLTransferDAO.java</file>
+            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/suppliers/ProductSender.java</file>
+            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/suppliers/views/MainView.java</file>
+            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/pojos/Ttransfer.java</file>
+            <file>file:/C:/Users/YordanoEynar/OneDrive/Documents/4Cuarto%20Cuatrimestre/Programacion%20avanzada%20II/Supplier/Suppliers/src/suppliers/SenderClass.java</file>
         </group>
     </open-files>
 </project-private>
