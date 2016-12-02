@@ -5,6 +5,7 @@
  */
 package suppliers.models;
 
+import factory.dao.database.MySQLTransferDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableModel;
@@ -21,6 +22,7 @@ public class TransferViewModel implements TransferViewModelInterface, QueryCallB
     private List<ProductsViewObserver> productObserver;
     private List<Ttransfer> transfer;
     String statusMessage = "Ready";
+        MySQLTransferDAO dao = new MySQLTransferDAO();
 
     public TransferViewModel() {
         productObserver = new ArrayList<>();
@@ -55,10 +57,15 @@ public class TransferViewModel implements TransferViewModelInterface, QueryCallB
     }
 
     @Override
-    public void addTransfer(Ttransfer product) {
-        transfer.add(product);
-        notifyObservers();
-
+    public void addTransfer(Ttransfer transfer) {
+              Thread threadq = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                dao.add(transfer);
+            }
+        });
+        
+        threadq.start();
     }
 
     private List<Ttransfer> getTransferDummyData() {//agregsr los datos a la tabla

@@ -5,8 +5,10 @@
  */
 package suppliers.models;
 
-import javax.swing.table.TableModel;
+import java.util.List;
+import pojos.Tevents;
 import pojos.Tproducts;
+import pojos.Ttransfer;
 import suppliers.views.ProductsViewObserver;
 
 /**
@@ -15,11 +17,7 @@ import suppliers.views.ProductsViewObserver;
  */
 public interface SendProductViewModelInterface {
 
-    void queryProducts();
-
-    TableModel getProductsTableModel();
-
-    void addProduct(Tproducts product);
+    void addEvent();
 
     void initialize();
 
@@ -29,5 +27,13 @@ public interface SendProductViewModelInterface {
 
     void removeObserver(ProductsViewObserver productsObserver);
 
+    void queryProducts();
+
+    List<Tproducts> getProducts();
+
     String getStatusMessage();
+    
+    Tevents getEvents();
+
+    void addTransfer(Ttransfer transfer);
 }

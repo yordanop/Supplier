@@ -24,9 +24,17 @@ public class MySQLProductDAO implements ProductDAO {
     private MySessionFactory mySessionFactory;
     private SessionFactory sessionFactory;
 
+    Session session;
+    
     public MySQLProductDAO() {
-        mySessionFactory = new MySessionFactory();
-
+        try {
+            mySessionFactory = new MySessionFactory();
+            
+            sessionFactory = mySessionFactory.setUp();
+            session = sessionFactory.openSession();
+        } catch (Exception ex) {
+            System.out.println("Error creating session");
+        }
     }
 
     @Override
@@ -51,21 +59,20 @@ public class MySQLProductDAO implements ProductDAO {
 
     @Override
     public void delete(Tproducts product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session.beginTransaction();
+        session.delete(product);
+        session.getTransaction().commit();
     }
 
     @Override
     public List<Tproducts> findAll() {
         List<Tproducts> products = null;
         try {
-            sessionFactory = mySessionFactory.setUp();
-            Session session = sessionFactory.openSession();
-            
+                       
             session.beginTransaction();
 
             products = session.createQuery("FROM Tproducts").list();
             session.getTransaction().commit();
-            session.close();
         } catch (Exception ex) {
             Logger.getLogger(MySQLProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -6,10 +6,10 @@
 package suppliers.models;
 
 import factory.dao.database.MySQLProductDAO;
-import factory.dao.database.MySQLUserDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableModel;
+import pojos.Tevents;
 import pojos.Tproducts;
 import suppliers.views.ProductsViewObserver;
 
@@ -23,17 +23,20 @@ public class ProductsViewModel implements ProductsViewModelInterface, QueryCallB
     private List<Tproducts> products;
     String statusMessage = "Ready";
         MySQLProductDAO dao = new MySQLProductDAO();
+        
+    QueryProducts queryProducts;
 
     public ProductsViewModel() {
         productObserver = new ArrayList<>();
         products = new ArrayList<>();
+        
+        queryProducts = new QueryProducts(this);
     }
 
     @Override
     public void queryProducts() {
         statusMessage = "Wait,executing query...";
         notifyObservers();
-        QueryProducts queryProducts = new QueryProducts(this);
         Thread thread = new Thread(queryProducts);
         thread.start();
     }
@@ -42,6 +45,13 @@ public class ProductsViewModel implements ProductsViewModelInterface, QueryCallB
     @Override
     public void initialize() {
         queryProducts();
+    }
+    
+    @Override
+    public void deleteProduct(int productIndex){
+        queryProducts.deleteProduct(products.get(productIndex));
+        products.remove(productIndex);
+        notifyObservers();
     }
 
     @Override
@@ -102,4 +112,5 @@ public class ProductsViewModel implements ProductsViewModelInterface, QueryCallB
     public void finishedEmployeeCallBack(List items) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

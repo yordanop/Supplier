@@ -5,9 +5,9 @@
  */
 package suppliers.controllers;
 
-import suppliers.models.ProductsViewModelInterface;
+import java.util.List;
+import pojos.Tproducts;
 import suppliers.models.SendProductViewModelInterface;
-
 
 /**
  *
@@ -24,12 +24,17 @@ public class SendProductController implements SendProductViewControllerInterface
 
     @Override
     public void newSendProduct() {
-        //empezar agregando un evento
-        //abrir ventana para transferencia
+        productsModel.initialize();
     }
 
-  
+    @Override
+    public List<Tproducts> getProducts() {
+        return productsModel.getProducts();
+    }
 
-
+    @Override
+    public void queryProduct() {
+        productsModel.queryProducts();
+    }
 
 }

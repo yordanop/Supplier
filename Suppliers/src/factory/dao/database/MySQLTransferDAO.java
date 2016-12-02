@@ -33,7 +33,17 @@ public class MySQLTransferDAO implements TransferDAO {
 
     @Override
     public void add(Ttransfer transfer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+            sessionFactory = mySessionFactory.setUp();
+            Session session = sessionFactory.openSession();
+            
+            session.beginTransaction();
+            session.save(transfer);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception ex) {
+            Logger.getLogger(MySQLTransferDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

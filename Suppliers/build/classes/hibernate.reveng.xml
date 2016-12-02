@@ -2,10 +2,10 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="Suppliers"/>
-  <table-filter match-name="EventType"/>
-  <table-filter match-name="EmployeeType"/>
-  <table-filter match-name="tTransfer"/>
-  <table-filter match-name="tEvents"/>
-  <table-filter match-name="tUser"/>
   <table-filter match-name="tProducts"/>
+  <table-filter match-name="EmployeeType"/>
+  <table-filter match-name="tEvents"/>
+  <table-filter match-name="tTransfer"/>
+  <table-filter match-name="EventType"/>
+  <table-filter match-name="tUser"/>
 </hibernate-reverse-engineering>

@@ -90,4 +90,6 @@ public class EventsViewModel implements EventsViewModelInterface,QueryCallBack {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+  
+
 }

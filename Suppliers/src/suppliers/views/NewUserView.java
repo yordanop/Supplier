@@ -5,18 +5,14 @@
  */
 package suppliers.views;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import javax.swing.JOptionPane;
 import pojos.EmployeeType;
 import pojos.Tuser;
 import suppliers.ModelObserver;
-import suppliers.MySessionFactory;
 import suppliers.controllers.NewUserControllerInterface;
 import suppliers.models.UserViewModelInterface;
 
@@ -29,11 +25,11 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
     /**
      * Creates new form NewUserView
      */
-    private final UserViewModelInterface model;
-    private final NewUserControllerInterface controller;
-    
+    private UserViewModelInterface model;
+    private NewUserControllerInterface controller;
+
     List<EmployeeType> types = new ArrayList<>();
-    
+
     public NewUserView(UserViewModelInterface model, NewUserControllerInterface controller) throws HeadlessException {
         initComponents();
         this.model = model;
@@ -76,6 +72,30 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
 
         jLabel5.setText("Employee type");
 
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
+
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
+
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Add");
@@ -100,9 +120,6 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
@@ -116,11 +133,14 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
                             .addComponent(jTextField5)
                             .addComponent(jTextField6)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(21, 21, 21))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,20 +187,57 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*     types = controller.getTypes();
-        int com = jComboBox1.getSelectedIndex();
-        com = com + 1;
-        for (EmployeeType type : types) {
-            if (com == type.getIdEmployeeType()) {
-                Tuser user = new Tuser(jTextField3.getText(), type, jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), null);
-                model.addUser(user);
-            }
-        }*/
-        
-        Tuser user = new Tuser(jTextField3.getText(), types.get(jComboBox1.getSelectedIndex()), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), null);
-        model.addUser(user);
-        dispose();
+        if (jTextField3.getText().length() < 10) {
+            JOptionPane.showMessageDialog(rootPane, "ID User must have 10 digits.", "Error", JOptionPane.WARNING_MESSAGE);
+        } else if (jTextField6.getText().length() < 8) {
+            JOptionPane.showMessageDialog(rootPane, "Password must have 8 digits", "Error", JOptionPane.WARNING_MESSAGE);
+        } // SI ID_USER ES IGUAL A 10 Y PASSWORD ES IGUAL A 8 ENVIA
+        else if (jTextField3.getText().length() == 10 && jTextField6.getText().length() == 8 && jTextField4.getText().length() > 1 && jTextField5.getText().length() > 1) {
+            Tuser user = new Tuser(jTextField3.getText(), types.get(jComboBox1.getSelectedIndex()), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), null);
+            model.addUser(user);
+            dispose();
+        } else if (jTextField4.getText().length() < 1 || jTextField5.getText().length() < 1) {
+            JOptionPane.showMessageDialog(rootPane, "Must have first & last name.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (!(Character.isAlphabetic(c) || (c == KeyEvent.VK_BACKSPACE) || c == KeyEvent.VK_DELETE)) {
+            evt.consume();
+        }
+        if (jTextField4.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (!(Character.isAlphabetic(c) || (c == KeyEvent.VK_BACKSPACE) || c == KeyEvent.VK_DELETE)) {
+            evt.consume();
+        }
+        if (jTextField5.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+        if (jTextField3.getText().length() >= 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+        // TODO add your handling code here:
+        if (jTextField6.getText().length() >= 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField6KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -203,14 +260,10 @@ public class NewUserView extends javax.swing.JFrame implements ModelObserver {
     public void updateView() {
         jLabel6.setText(model.getStatusMessage());
         jComboBox1.removeAllItems();
-        
         types = controller.getTypes();
-        if (types.size() > 0) {
             for (EmployeeType type : types) {
                 jComboBox1.addItem(type.getEmployeeType());
             }
-        } else {
-            System.out.println("nada we");
-        }
+        
     }
 }

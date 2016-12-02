@@ -5,12 +5,14 @@
  */
 package suppliers.models;
 
-import factory.dao.database.MySQLProductDAO;
-
+import factory.dao.database.MySQLEventDAO;
+import factory.dao.database.MySQLTransferDAO;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.TableModel;
+import pojos.Tevents;
 import pojos.Tproducts;
+import pojos.Ttransfer;
+
 import suppliers.views.ProductsViewObserver;
 
 /**
@@ -20,24 +22,16 @@ import suppliers.views.ProductsViewObserver;
 public class SendProductsViewModel implements SendProductViewModelInterface, QueryCallBack {
 
     private List<ProductsViewObserver> productObserver;
-    private List<Tproducts> products;
     String statusMessage = "Ready";
-        MySQLProductDAO dao = new MySQLProductDAO();
+    MySQLEventDAO dao = new MySQLEventDAO();
+    MySQLTransferDAO dao1 = new MySQLTransferDAO();
+    private List<Tproducts> products;
+    Tevents event;
 
     public SendProductsViewModel() {
         productObserver = new ArrayList<>();
         products = new ArrayList<>();
     }
-
-    @Override
-    public void queryProducts() {
-        statusMessage = "Wait,executing query...";
-        notifyObservers();
-        QueryProducts queryProducts = new QueryProducts(this);
-        Thread thread = new Thread(queryProducts);
-        thread.start();
-    }
-
 
     @Override
     public void initialize() {
@@ -52,28 +46,12 @@ public class SendProductsViewModel implements SendProductViewModelInterface, Que
     }
 
     @Override
-    public TableModel getProductsTableModel() {
-        return new ProductsModelData(products);
-    }
-
-    @Override
-    public void addProduct(Tproducts product) {
-        products.add(product);
-        Thread threadq = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                dao.add(product);
-                notifyObservers();
-            }
-        });
-        threadq.start();
-
-    }
-
-    private List<Tproducts> getProductsDummyData() {//agregsr los datos a la tabla
-        List<Tproducts> dummyProducts = new ArrayList<>();
-
-        return dummyProducts;//devolver los datos
+    public void addEvent() {
+        statusMessage = "Wait, getting products...";
+        notifyObservers();
+        QueryTransfer queryTransfer = new QueryTransfer(this);
+        Thread hilo = new Thread(queryTransfer);
+        hilo.start();
     }
 
     @Override
@@ -88,8 +66,8 @@ public class SendProductsViewModel implements SendProductViewModelInterface, Que
 
     @Override
     public void finishedQueryCallBack(List items) {
-        products = items;
         statusMessage = "Ready";
+        products = items;
         notifyObservers();
     }
 
@@ -100,6 +78,38 @@ public class SendProductsViewModel implements SendProductViewModelInterface, Que
 
     @Override
     public void finishedEmployeeCallBack(List items) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    }
+
+    @Override
+    public void queryProducts() {
+        statusMessage = "Wait, getting products...";
+        notifyObservers();
+        QueryProducts queryProducts = new QueryProducts(this);
+        Thread hilo = new Thread(queryProducts);
+        hilo.start();
+    }
+
+    @Override
+    public List<Tproducts> getProducts() {
+        return products;
+    }
+
+    @Override
+    public void addTransfer(Ttransfer transfer) {
+        Thread threadq = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                dao1.add(transfer);
+            }
+        });
+
+        threadq.start();
+    }
+
+    @Override
+    public Tevents getEvents() {
+        event=dao.lastEvent();
+        return event;
     }
 }

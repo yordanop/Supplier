@@ -5,6 +5,9 @@
  */
 package suppliers.controllers;
 
+import java.util.List;
+import pojos.Tproducts;
+
 /**
  *
  * @author YordanoEynar
@@ -12,4 +15,8 @@ package suppliers.controllers;
 public interface SendProductViewControllerInterface {
 
     public void newSendProduct();
+    
+    public List<Tproducts> getProducts();
+    
+    public void queryProduct();
 }

@@ -53,9 +53,6 @@ public class TransferModelData extends AbstractTableModel{
         if (columnIndex == 3) {
             return transferData.get(rowIndex).getTproducts().getCost();
         }
-        if (columnIndex == 4) {
-            return transferData.get(rowIndex).getDate();
-        }
         if (columnIndex == 5) {
             return transferData.get(rowIndex).getQuantity();
         }
@@ -78,9 +75,6 @@ public class TransferModelData extends AbstractTableModel{
         }
         if (columnIndex == 3) {
             transferData.get(rowIndex).setTproducts((Tproducts) aValue);
-        }
-        if (columnIndex == 4) {
-            transferData.get(rowIndex).setDate((Date) aValue);
         }
         if (columnIndex == 5) {
             transferData.get(rowIndex).setQuantity((Integer) aValue);

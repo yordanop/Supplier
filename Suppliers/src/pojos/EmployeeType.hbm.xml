@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/11/2016 03:58:16 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 1/12/2016 09:36:40 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojos.EmployeeType" table="EmployeeType" catalog="Suppliers" optimistic-lock="version">
         <id name="idEmployeeType" type="int">

@@ -5,13 +5,9 @@
  */
 package suppliers.views;
 
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import com.sun.glass.events.KeyEvent;
+import javax.swing.JOptionPane;
 import pojos.Tproducts;
-import suppliers.MySessionFactory;
 import suppliers.controllers.NewProductsControllerInterface;
 import suppliers.models.ProductsViewModelInterface;
 
@@ -21,17 +17,19 @@ import suppliers.models.ProductsViewModelInterface;
  */
 public class NewProductsView extends javax.swing.JFrame {
 
-  private ProductsViewModelInterface productsModel;
+    private ProductsViewModelInterface productsModel;
     private NewProductsControllerInterface productsController;
+
     /**
      * Creates new form NewProductsView
+     *
      * @param productsModel
      * @param productsController
      */
-    public NewProductsView(ProductsViewModelInterface productsModel,NewProductsControllerInterface productsController) {
+    public NewProductsView(ProductsViewModelInterface productsModel, NewProductsControllerInterface productsController) {
         initComponents();
-        this.productsModel=productsModel;
-        this.productsController=productsController;
+        this.productsModel = productsModel;
+        this.productsController = productsController;
     }
 
     /**
@@ -67,14 +65,30 @@ public class NewProductsView extends javax.swing.JFrame {
         });
 
         jButton2.setText("Close");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("CodeBar");
 
         jLabel2.setText("Cost");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
             }
         });
 
@@ -87,6 +101,23 @@ public class NewProductsView extends javax.swing.JFrame {
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
+            }
+        });
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
+
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
             }
         });
 
@@ -163,11 +194,58 @@ public class NewProductsView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            Tproducts product = new Tproducts(jTextField1.getText(), jTextField2.getText(), Integer.valueOf(jTextField3.getText()), jTextField4.getText(), Integer.valueOf(jTextField5.getText()));
+        if (jTextField1.getText().length() > 1 && jTextField2.getText().length() > 1 && jTextField3.getText().length() > 1 && jTextField4.getText().length() > 1 && jTextField5.getText().length() > 1) {
+            Tproducts product = new Tproducts(jTextField1.getText(), jTextField2.getText(), Integer.valueOf(jTextField3.getText()), jTextField4.getText(), Integer.valueOf(jTextField5.getText()),null);
             productsModel.addProduct(product);
             dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Must fill all text fields.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACKSPACE) || c == KeyEvent.VK_DELETE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACKSPACE) || c == KeyEvent.VK_DELETE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        if (jTextField1.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        if (jTextField2.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        // TODO add your handling code here:
+        if (jTextField4.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

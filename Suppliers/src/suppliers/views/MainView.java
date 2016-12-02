@@ -145,7 +145,7 @@ public class MainView extends javax.swing.JFrame implements ModelObserver{
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        controller.viewTransfers();
+        controller.sendProduct();
     }//GEN-LAST:event_jButton5ActionPerformed
 
 

@@ -31,5 +31,8 @@ public class QueryProducts implements Runnable {
         List<Tproducts> products = dao.findAll();
         callback.finishedQueryCallBack(products);
     }
-
+    
+    public void deleteProduct(Tproducts product){
+        dao.delete(product);
+    }
 }

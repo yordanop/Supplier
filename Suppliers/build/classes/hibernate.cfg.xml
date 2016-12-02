@@ -7,12 +7,11 @@
     <property name="hibernate.connection.url">jdbc:mysql://52.43.124.39:3306/Suppliers?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">supplier</property>
     <property name="hibernate.connection.password">supplier</property>
-    <property name="hibernate.show_sql">true</property>
+    <mapping resource="pojos/Tevents.hbm.xml"/>
     <mapping resource="pojos/EmployeeType.hbm.xml"/>
     <mapping resource="pojos/Tproducts.hbm.xml"/>
+    <mapping resource="pojos/Ttransfer.hbm.xml"/>
     <mapping resource="pojos/Tuser.hbm.xml"/>
     <mapping resource="pojos/EventType.hbm.xml"/>
-    <mapping resource="pojos/Tevents.hbm.xml"/>
-    <mapping resource="pojos/Ttransfer.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -8,18 +8,17 @@ package factory.dao;
 import java.util.List;
 import pojos.Tevents;
 
-
-
-
 /**
  *
  * @author imjesr
  */
 public interface EventDAO {
 
-    void add(Tevents event);
+    void add();
 
     Tevents find(int id);
 
     List<Tevents> findAll();
+
+    Tevents lastEvent();
 }

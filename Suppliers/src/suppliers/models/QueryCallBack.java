@@ -6,6 +6,7 @@
 package suppliers.models;
 
 import java.util.List;
+import pojos.Tevents;
 
 /**
  *
@@ -16,4 +17,6 @@ public interface QueryCallBack {
     void finishedQueryCallBack(List items);
     
     void finishedEmployeeCallBack(List items);
+    
+    //void finishedQueryCallBack1(Tevents items);
 }

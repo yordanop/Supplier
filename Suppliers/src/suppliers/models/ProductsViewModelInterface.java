@@ -20,6 +20,8 @@ public interface ProductsViewModelInterface {
     TableModel getProductsTableModel();
 
     void addProduct(Tproducts product);
+    
+    void deleteProduct(int index);
 
     void initialize();
 
